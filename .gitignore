@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/csharp_opdracht_2_groep13.zip
+/Microwave_Class_Diagram.jpg
