@@ -43,13 +43,9 @@ namespace Microwave.Item
 
             if (result > 80)
             {
-                Debug.WriteLine(result);
-
                 ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
                 return;
             }
-
-            Debug.WriteLine(result);
 
             ClipSetup(ClipTimings.Donut.Done, ClipTimings.Donut.IdleClosed);
         }
