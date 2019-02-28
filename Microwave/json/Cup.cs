@@ -1,4 +1,4 @@
-﻿namespace Microwave
+﻿namespace Microwave.json
 {
     public class Cup
     {

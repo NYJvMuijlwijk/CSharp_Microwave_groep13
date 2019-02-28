@@ -1,8 +1,8 @@
-﻿namespace Microwave
+﻿namespace Microwave.Interfaces
 {
     public interface IItem
     {
-        void Idle(bool isOpen);
+        void Idle(bool open);
         void Open();
         void Close();
         void Cook();

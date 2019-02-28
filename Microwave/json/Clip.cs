@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microwave
+namespace Microwave.json
 {
     public class Clip
     {

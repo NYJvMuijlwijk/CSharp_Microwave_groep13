@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
-using System.Runtime.CompilerServices;
 using System.Timers;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microwave.Annotations;
+using Microwave.Interfaces;
 using Microwave.Item;
+using Microwave.json;
 using Newtonsoft.Json;
 using static System.Int32;
 
@@ -28,14 +16,14 @@ namespace Microwave
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
 
         #region Attributes
 
         private bool isOn;
 
-        private static readonly Timer frameTimer = new Timer(1000/30);
+        private static readonly Timer FrameTimer = new Timer(1000/30f);
 
         private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
 
@@ -85,7 +73,7 @@ namespace Microwave
 
             CurrentItem = empty;
 
-            frameTimer.Elapsed += TimerOnElapsed;
+            FrameTimer.Elapsed += TimerOnElapsed;
 
             MediaElement.LoadedBehavior = MediaState.Manual;
             MediaElement.Play();
@@ -118,7 +106,7 @@ namespace Microwave
                 MediaElement.Play();
                 CurrentItem.Idle(IsOpen);
 
-                frameTimer.Start();
+                FrameTimer.Start();
                 
                 Display = "00:00";
 
@@ -192,7 +180,7 @@ namespace Microwave
             if (isOn && !IsMicrowaving && Display == "00:00")
             {
                 isOn = false;
-                frameTimer.Stop();
+                FrameTimer.Stop();
                 MicrowaveDisplay.Content = "";
                 MediaElement.Source = new Uri("resources/Off.png", UriKind.RelativeOrAbsolute);
                 MediaElement.Play();

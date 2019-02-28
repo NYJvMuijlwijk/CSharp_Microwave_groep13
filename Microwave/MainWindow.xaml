@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Microwave"
         mc:Ignorable="d"
         Title="Microwave" Width="1280" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
@@ -67,7 +66,7 @@
         </Grid.ColumnDefinitions>
 
         <!--microwave media-->
-        <MediaElement HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Source="resources/Off.png" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="9" UnloadedBehavior="Manual" Width="1280" Height="720"/>
+        <MediaElement HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Source="resources/Off.png" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="8" UnloadedBehavior="Manual" Width="1280" Height="720"/>
         
         <!--button pad-->
         <Button Tag="1" Click="NrButton_OnClick" Name="Nr1Button" Grid.Column="2" Grid.Row="2"/>
@@ -87,7 +86,7 @@
         <Button Name="CloseDoorButton" Click="CloseDoorButton_OnClick" Grid.Column="0" Grid.Row="1" Grid.RowSpan="7"/>
 
         <!--open door/remove item-->
-        <Button Name="Open_RemoveButton" Click="Open_RemoveButton_OnClick" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
+        <Button Name="OpenRemoveButton" Click="Open_RemoveButton_OnClick" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
 
         <!--add donut-->
         <Button Name="DonutButton" Click="DonutButton_OnClick" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="2"/>
