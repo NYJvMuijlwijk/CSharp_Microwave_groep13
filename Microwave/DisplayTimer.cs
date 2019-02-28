@@ -55,15 +55,10 @@ namespace Microwave
 
             _timeLeft -= elapsedTime.TotalSeconds;
 
-            if (_timeLeft <= 0)
+            if (_timeLeft <= 1)
             {
                 Stop();
                 MainWindow.Main.CurrentItem.Done();
-                if (MainWindow.Main.CurrentClip != MainWindow.Main.ClipTimings.Donut.Radioactive)
-                {
-                   //MainWindow.Main.MicrowaveDone.Play();
-                }
-                    
                 Reset();
                 return;
             }
