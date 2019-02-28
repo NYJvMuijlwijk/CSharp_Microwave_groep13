@@ -10,6 +10,10 @@ namespace Microwave.json
         private static DateTime _lastDateTime;
         private static double _timeLeft;
 
+        /// <summary>
+        ///     Adds the selected number to the end of the timer
+        /// </summary>
+        /// <param name="time">Number to add</param>
         public static void Add(int time)
         {
             if (int.Parse(_counter + time) >= 10000)
@@ -69,6 +73,9 @@ namespace Microwave.json
             UpdateTimer();
         }
 
+        /// <summary>
+        /// Updates the microwave display
+        /// </summary>
         private static void UpdateTimer()
         {
             var display = _counter.PadLeft(4, '0');

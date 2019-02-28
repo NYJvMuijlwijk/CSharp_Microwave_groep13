@@ -50,7 +50,6 @@ namespace Microwave
         private bool IsOpen { get; set; }
         public bool IsMicrowaving { private get; set; }
 
-
         public string Display
         {
             private get => MicrowaveDisplay.Content.ToString();
