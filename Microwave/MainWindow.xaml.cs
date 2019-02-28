@@ -55,7 +55,6 @@ namespace Microwave
         {
             Dispatcher.InvokeAsync(() =>
             {
-                Console.Clear();
                 Debug.WriteLine(MediaElement.Position);
 
                 if (MediaElement.Position < CurrentClip.End) return;
