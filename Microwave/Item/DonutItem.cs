@@ -10,7 +10,6 @@ namespace Microwave.Item
         private readonly Timings ClipTimings;
         private readonly Random rand = new Random();
 
-
         public DonutItem()
         {
             ClipTimings = MainWindow.Main.ClipTimings;
@@ -41,11 +40,11 @@ namespace Microwave.Item
         {
             var result = rand.Next(100);
 
-            if (result > 80)
+            if (result > 0)
             {
                 Debug.WriteLine(result);
 
-                ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.Radioactive);
+                ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
                 return;
             }
 
