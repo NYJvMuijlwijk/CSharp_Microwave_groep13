@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Microwave.Item
 {
-    class DonutItem : ClipController, IItem
+    internal class DonutItem : ClipController, IItem
     {
         private readonly Timings ClipTimings;
-        private Random rand = new Random();
+        private readonly Random rand = new Random();
 
 
         public DonutItem()
