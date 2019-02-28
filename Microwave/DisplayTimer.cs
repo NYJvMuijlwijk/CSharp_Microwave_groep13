@@ -38,8 +38,6 @@ namespace Microwave
             Timer.Start();
             MainWindow.Main.CurrentItem.Cook();
             MainWindow.Main.IsMicrowaving = true;
-            // voor onduidelijke reden werkt deze niet
-            MainWindow.Main.MicrowaveRunning.PlayLooping();
         }
 
         /// <summary>
@@ -105,7 +103,6 @@ namespace Microwave
         public static void Stop()
         {
             Timer.Stop();
-            MainWindow.Main.MicrowaveRunning.Stop();
         }
 
         /// <summary>
