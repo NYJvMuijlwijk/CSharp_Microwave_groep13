@@ -122,7 +122,7 @@
     <value>..\resources\microwave.mkv;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="microwave_beep" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\microwave-beep.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\uwa.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="microwave_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\microwave-done.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

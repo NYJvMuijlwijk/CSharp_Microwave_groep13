@@ -88,7 +88,7 @@ namespace Microwave
                 DisplayTimer.AddMinute();
             }
 
-            microwaveBeep.Play();
+            //microwaveBeep.Play();
         }
 
         private void CloseDoorButton_OnClick(object sender, RoutedEventArgs e)
@@ -160,7 +160,7 @@ namespace Microwave
                 DisplayTimer.Stop();
             }
 
-            microwaveBeep.Play();
+            //microwaveBeep.Play();
         }
 
         private void DonutButton_OnClick(object sender, RoutedEventArgs e)
