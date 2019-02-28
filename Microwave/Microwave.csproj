@@ -58,7 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Item\ClipController.cs" />
+    <Compile Include="controller\ClipController.cs" />
     <Compile Include="Item\DonutItem.cs" />
     <Compile Include="json\Clip.cs" />
     <Compile Include="json\Cup.cs" />
