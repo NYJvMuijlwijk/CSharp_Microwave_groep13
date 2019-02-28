@@ -47,6 +47,10 @@ namespace Microwave.Item
                     break;
                 case 1 :
                     ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
+                    if (MainWindow.Main.getEasterEggPlaying())
+                    {
+                        MainWindow.Main.SetEasterEgg();
+                    }
                     break;
             }
         }
