@@ -2,6 +2,7 @@
 {
     public class Empty
     {
+        public Clip Startup { get; set; }
         public Clip IdleOpen { get; set; }
         public Clip IdleClosed { get; set; }
         public Clip Close { get; set; }

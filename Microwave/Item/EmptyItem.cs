@@ -12,6 +12,11 @@ namespace Microwave.Item
             ClipTimings = MainWindow.Main.ClipTimings;
         }
 
+        public void Startup()
+        {
+            ClipSetup(ClipTimings.Empty.Startup, ClipTimings.Empty.IdleClosed);
+        }
+
         public void Idle(bool open)
         {
             var clip = open ? ClipTimings.Empty.IdleOpen : ClipTimings.Empty.IdleClosed;
