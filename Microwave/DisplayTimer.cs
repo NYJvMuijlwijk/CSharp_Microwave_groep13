@@ -59,7 +59,10 @@ namespace Microwave
                 Stop();
                 MainWindow.Main.CurrentItem.Done();
                 if (MainWindow.Main.CurrentClip != MainWindow.Main.ClipTimings.Donut.Radioactive)
+                {
                     MainWindow.Main.MicrowaveDone.Play();
+                }
+
                 Reset();
                 return;
             }
