@@ -16,14 +16,7 @@ namespace Microwave
         /// <param name="time">Number to add</param>
         public static void Add(int time)
         {
-            if (int.Parse(_counter + time) >= 9000)
-            {
-                _counter = "9000";
-            }
-            else
-            {
-                _counter += time;
-            }
+            _counter = int.Parse(_counter + time) >= 9000 ? "9000" : _counter += time;
 
             UpdateTimer();
         }
@@ -49,12 +42,14 @@ namespace Microwave
         /// <param name="e"></param>
         private static void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
+            // time passed since last TimerOnElapsed
             var now = DateTime.Now;
             var elapsedTime = now - _lastDateTime;
             _lastDateTime = now;
 
             _timeLeft -= elapsedTime.TotalSeconds;
 
+            // play done animation if at animation end
             if (_timeLeft <= 1)
             {
                 Stop();
@@ -63,6 +58,7 @@ namespace Microwave
                 return;
             }
 
+            // update counter
             var seconds = (int) Math.Ceiling(_timeLeft);
 
             _counter = (seconds / 60).ToString().PadLeft(2, '0') +
@@ -110,13 +106,8 @@ namespace Microwave
         /// </summary>
         public static void AddMinute()
         {
-            if (int.Parse(_counter.PadLeft(1, '0')) + 100 >= 10000)
-            {
-                _counter = "9999";
-                return;
-            }
+            _counter = int.Parse(_counter.PadLeft(1, '0')) + 100 >= 9000 ? "9000" : (int.Parse(_counter.PadLeft(1, '0')) + 100).ToString();
 
-            _counter = (int.Parse(_counter.PadLeft(1, '0')) + 100).ToString();
             _timeLeft = TotalSeconds();
 
             UpdateTimer();

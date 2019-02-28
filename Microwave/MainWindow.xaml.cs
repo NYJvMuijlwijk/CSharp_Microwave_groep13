@@ -32,13 +32,17 @@ namespace Microwave
             cup = new CupItem();
 
             // initialize sound Media
-            easterEgg = new MediaPlayer();
-            easterEgg.Open(new Uri(@"resources\music.wav", UriKind.RelativeOrAbsolute));
+            EasterEgg = new MediaPlayer();
+            EasterEgg.Open(new Uri(@"resources\music.wav", UriKind.RelativeOrAbsolute));
+            // set position to start when media ends
+            EasterEgg.MediaEnded += (sender, args) => EasterEgg.Position = TimeSpan.Zero;
 
+            // set current item
             CurrentItem = empty;
 
             FrameTimer.Elapsed += TimerOnElapsed;
 
+            // play the MediaElement and pause it once it is loaded
             MediaElement.Play();
             MediaElement.Loaded += (sender, args) =>
             {
@@ -59,10 +63,12 @@ namespace Microwave
         {
             Dispatcher.InvokeAsync(() =>
             {
+                // turn of display if radioactive clip is playing
                 if (CurrentClip == ClipTimings.Donut.Radioactive) Display = "";
 
                 if (MediaElement.Position < CurrentClip.End) return;
 
+                // turn on display once startup animation has finished
                 if (CurrentClip == ClipTimings.Empty.Startup || CurrentClip == ClipTimings.Donut.Radioactive)
                 {
                     Display = "00:00";
@@ -71,6 +77,7 @@ namespace Microwave
 
                 IsAnimating = false;
 
+                // start the next clip
                 MediaElement.Position = NextClip.Start;
                 CurrentClip = NextClip;
             });
@@ -194,7 +201,16 @@ namespace Microwave
         }
         private void EasterEggButton_OnClick(object sender, RoutedEventArgs e)
         {
-            SetEasterEgg();
+            if (EasterEggPlaying)
+            {
+                EasterEgg.Pause();
+            }
+            else
+            {
+                EasterEgg.Play();
+            }
+
+            EasterEggPlaying = !EasterEggPlaying;
         }
 
         #endregion
@@ -207,34 +223,11 @@ namespace Microwave
 
         private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.uwa);
 
-        private readonly MediaPlayer easterEgg;
-
         public static MainWindow Main;
 
         private readonly EmptyItem empty;
         private readonly DonutItem donut;
         private readonly CupItem cup;
-
-        private bool easterEggPlaying;
-
-        public bool getEasterEggPlaying()
-        {
-            return easterEggPlaying;
-        }
-
-        public void SetEasterEgg()
-        {
-            if (easterEggPlaying)
-            {
-                easterEgg.Pause();
-            }
-            else
-            {
-                easterEgg.Play();
-            }
-
-            easterEggPlaying = !easterEggPlaying;
-        }
 
         #endregion
 
@@ -244,6 +237,8 @@ namespace Microwave
             JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
 
 
+        public MediaPlayer EasterEgg { get; }
+
         public Clip CurrentClip { get; set; }
         public Clip NextClip { private get; set; }
 
@@ -252,6 +247,7 @@ namespace Microwave
         private bool IsOpen { get; set; }
         public bool IsMicrowaving { private get; set; }
         private bool IsAnimating { get; set; }
+        public bool EasterEggPlaying { get; set; }
 
         public string Display
         {
