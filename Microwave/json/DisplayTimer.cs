@@ -5,11 +5,10 @@ namespace Microwave.json
 {
     public static class DisplayTimer
     {
-        private static string _counter= "";
+        private static string _counter = "";
         private static readonly Timer Timer = new Timer(1000);
         private static DateTime _lastDateTime;
         private static double _timeLeft;
-
 
         public static void Add(int time)
         {
@@ -25,7 +24,7 @@ namespace Microwave.json
         }
 
         /// <summary>
-        /// Starts the microwave
+        ///     Starts the microwave
         /// </summary>
         public static void Start()
         {
@@ -40,15 +39,15 @@ namespace Microwave.json
         }
 
         /// <summary>
-        /// Periodically checks if the microwave timer has finished and updates the timer.
-        /// Plays done animation when the timer has finished
+        ///     Periodically checks if the microwave timer has finished and updates the timer.
+        ///     Plays done animation when the timer has finished
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private static void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
-            DateTime now = DateTime.Now;
-            TimeSpan elapsedTime = now - _lastDateTime;
+            var now = DateTime.Now;
+            var elapsedTime = now - _lastDateTime;
             _lastDateTime = now;
 
             _timeLeft -= elapsedTime.TotalSeconds;
@@ -62,8 +61,8 @@ namespace Microwave.json
                 return;
             }
 
-            var seconds = (int)Math.Ceiling(_timeLeft);
-            
+            var seconds = (int) Math.Ceiling(_timeLeft);
+
             _counter = (seconds / 60).ToString().PadLeft(2, '0') +
                        (seconds % 60).ToString().PadLeft(2, '0');
 
@@ -84,7 +83,7 @@ namespace Microwave.json
         }
 
         /// <summary>
-        /// Resets the timer on the microwave
+        ///     Resets the timer on the microwave
         /// </summary>
         public static void Reset()
         {
@@ -94,7 +93,7 @@ namespace Microwave.json
         }
 
         /// <summary>
-        /// Stops the timer
+        ///     Stops the timer
         /// </summary>
         public static void Stop()
         {
@@ -103,11 +102,11 @@ namespace Microwave.json
         }
 
         /// <summary>
-        /// Adds 1 minute to the microwave timer
+        ///     Adds 1 minute to the microwave timer
         /// </summary>
         public static void AddMinute()
         {
-            if (int.Parse(_counter.PadLeft(1,'0')) + 100 >= 10000)
+            if (int.Parse(_counter.PadLeft(1, '0')) + 100 >= 10000)
             {
                 _counter = "9999";
                 return;

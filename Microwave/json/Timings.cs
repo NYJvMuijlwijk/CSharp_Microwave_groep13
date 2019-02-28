@@ -1,6 +1,6 @@
 ﻿namespace Microwave.json
 {
-    public class Timings
+    public abstract class Timings
     {
         public Cup Cup { get; set; }
         public Donut Donut { get; set; }

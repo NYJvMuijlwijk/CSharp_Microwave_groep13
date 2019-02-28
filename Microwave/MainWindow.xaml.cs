@@ -29,9 +29,9 @@ namespace Microwave
 
         public static MainWindow Main;
 
-        readonly EmptyItem empty;
-        readonly DonutItem donut;
-        readonly CupItem cup;
+        private readonly EmptyItem empty;
+        private readonly DonutItem donut;
+        private readonly CupItem cup;
 
         #endregion
 
@@ -42,18 +42,18 @@ namespace Microwave
 
         public Timings ClipTimings { get; } = JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
 
-        public Clip CurrentClip { get; set; }
-        public Clip NextClip { get; set; }
+        public Clip CurrentClip { private get; set; }
+        public Clip NextClip { private get; set; }
 
-        public IItem CurrentItem { get; set; }
+        public IItem CurrentItem { get; private set; }
 
-        public bool IsOpen { get; private set; }
-        public bool IsMicrowaving { get; set; }
+        private bool IsOpen { get; set; }
+        public bool IsMicrowaving { private get; set; }
 
 
         public string Display
         {
-            get => MicrowaveDisplay.Content.ToString();
+            private get => MicrowaveDisplay.Content.ToString();
             set { Dispatcher.Invoke(() => { MicrowaveDisplay.Content = value; }); }
         }
 
