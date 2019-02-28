@@ -33,7 +33,9 @@ namespace Microwave
 
             // initialize sound Media
             easterEgg = new MediaPlayer();
+            microwaveBeep = new MediaPlayer();
             easterEgg.Open(new Uri(@"resources\music.wav", UriKind.RelativeOrAbsolute));
+            microwaveBeep.Open(new Uri(@"resources\uwa.wav", UriKind.RelativeOrAbsolute));
 
             CurrentItem = empty;
 
@@ -214,8 +216,10 @@ namespace Microwave
 
         private static readonly Timer FrameTimer = new Timer(1000 / 30f);
 
-        private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.uwa);
+        //private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
+        //private readonly SoundPlayer easterEgg = new SoundPlayer(Properties.Resources.music);
 
+        private readonly MediaPlayer microwaveBeep;
         private readonly MediaPlayer easterEgg;
 
         public static MainWindow Main;
