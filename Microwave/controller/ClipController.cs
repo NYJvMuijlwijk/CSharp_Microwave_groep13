@@ -1,8 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Threading;
 using Microwave.json;
 
-namespace Microwave.Item
+namespace Microwave.controller
 {
     public class ClipController
     {
