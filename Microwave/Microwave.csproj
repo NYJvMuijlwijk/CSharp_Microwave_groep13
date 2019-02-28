@@ -118,16 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\microwave-beep.wav" />
-    <None Include="resources\microwave-on-loop.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\microwave-open.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\microwave-running-short.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\microwave-done.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
