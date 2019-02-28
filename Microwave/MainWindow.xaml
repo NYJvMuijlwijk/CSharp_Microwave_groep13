@@ -66,7 +66,8 @@
         </Grid.ColumnDefinitions>
 
         <!--microwave media-->
-        <MediaElement LoadedBehavior="Manual" Source="resources/microwave.mp4" ScrubbingEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="8" UnloadedBehavior="Manual" Width="1280" Height="720"/>
+        <MediaElement LoadedBehavior="Manual" Source="resources/microwave.mp4" ScrubbingEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                      Grid.Column="0" Grid.Row="0" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="8" UnloadedBehavior="Manual" Width="1280" Height="720"/>
         
         <!--button pad-->
         <Button Tag="1" Click="NrButton_OnClick" Name="Nr1Button" Grid.Column="2" Grid.Row="2"/>
@@ -95,7 +96,7 @@
         <Button Name="CupButton" Click="CupButton_OnClick" Grid.Column="7" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
         
         <!--start-up button-->
-        <Button Name="StartUpButton" Click="StartUpButton_OnClick" Grid.Column="5" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="1"/>
+        <Button Name="StartUpButton" Click="StartUpButton_OnClick" Grid.Column="5" Grid.Row="1" Grid.RowSpan="3"/>
 
         <!--exit button-->
         <Button Name="ExitButton" Click="ExitButton_OnClick" Content="Exit" Grid.Column="8" Grid.Row="0" Opacity="100" Height="60" VerticalAlignment="Top"/>
