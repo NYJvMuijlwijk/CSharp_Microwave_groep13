@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Media;
 using System.Timers;
@@ -38,6 +37,8 @@ namespace Microwave
             MediaElement.Play();
         }
 
+        #region Methods
+
         /// <summary>
         ///     checks if the current position of the MediaElement has passed the end of the CurrentClip.
         ///     if so, it sets the Position to the start of the NextClip
@@ -51,7 +52,7 @@ namespace Microwave
             Dispatcher.InvokeAsync(() =>
             {
                 if (MediaElement.Position < CurrentClip.End) return;
-                Debug.WriteLine("Clip End");
+
                 MediaElement.Position = NextClip.Start;
                 CurrentClip = NextClip;
             });
@@ -175,6 +176,8 @@ namespace Microwave
 
             cup.Add();
         }
+
+        #endregion
 
         #region Attributes
 

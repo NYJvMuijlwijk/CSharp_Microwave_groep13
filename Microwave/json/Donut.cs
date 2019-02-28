@@ -1,6 +1,6 @@
 ﻿namespace Microwave.json
 {
-    public abstract class Donut
+    public class Donut
     {
         public Clip IdleOpen { get; set; }
         public Clip IdleClosed { get; set; }

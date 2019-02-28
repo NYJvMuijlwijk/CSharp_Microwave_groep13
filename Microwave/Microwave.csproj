@@ -68,7 +68,7 @@
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Item\CupItem.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="json\DisplayTimer.cs" />
+    <Compile Include="DisplayTimer.cs" />
     <Compile Include="json\Timings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
