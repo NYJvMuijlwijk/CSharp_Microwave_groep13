@@ -145,15 +145,7 @@ namespace Microwave
         {
             if (!isOn) return;
 
-            if (isOn && !IsMicrowaving && Display == "00:00")
-            {
-                isOn = false;
-                FrameTimer.Stop();
-                MicrowaveDisplay.Content = "";
-                MediaElement.Position = new TimeSpan(0,0,0,0,150);
-                MediaElement.Pause();
-            }
-            else if (isOn && !IsMicrowaving && Display != "00:00")
+            if (isOn && !IsMicrowaving && Display != "00:00")
             {
                 DisplayTimer.Reset();
             }
