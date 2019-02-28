@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace Microwave.json
+namespace Microwave
 {
     public static class DisplayTimer
     {
