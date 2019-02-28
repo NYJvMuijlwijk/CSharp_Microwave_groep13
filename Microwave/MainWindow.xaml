@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Microwave"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1280" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Microwave" Width="1280" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -53,7 +53,6 @@
             <RowDefinition Height="41"/>
             <RowDefinition Height="64"/>
             <RowDefinition Height="149"/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -68,8 +67,8 @@
         </Grid.ColumnDefinitions>
 
         <!--microwave media-->
-        <MediaElement HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Source="resources/Off.png" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="9" UnloadedBehavior="Manual" Width="1280" Height="720" Margin="0,0,-6,-6"/>
-
+        <MediaElement HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Source="resources/Off.png" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="9" UnloadedBehavior="Manual" Width="1280" Height="720"/>
+        
         <!--button pad-->
         <Button Tag="1" Click="NrButton_OnClick" Name="Nr1Button" Grid.Column="2" Grid.Row="2"/>
         <Button Tag="2" Click="NrButton_OnClick" Name="Nr2Button" Grid.Column="3" Grid.Row="2"/>
