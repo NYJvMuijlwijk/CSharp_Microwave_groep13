@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Media;
 using System.Timers;
@@ -17,6 +18,8 @@ namespace Microwave
     /// </summary>
     public partial class MainWindow
     {
+        #region Methods
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,8 +28,6 @@ namespace Microwave
             DataContext = this;
             Display = "";
 
-            MediaElement.Source = new Uri("resources/microwave.mp4", UriKind.RelativeOrAbsolute);
-            MediaElement.Pause();
 
             empty = new EmptyItem();
             donut = new DonutItem();
@@ -36,11 +37,13 @@ namespace Microwave
 
             FrameTimer.Elapsed += TimerOnElapsed;
 
-            MediaElement.LoadedBehavior = MediaState.Manual;
             MediaElement.Play();
+            MediaElement.Loaded += (sender, args) =>
+            {
+                MediaElement.Position = new TimeSpan(0, 0, 0, 0, 150);
+                MediaElement.Pause();
+            };
         }
-
-        #region Methods
 
         /// <summary>
         ///     checks if the current position of the MediaElement has passed the end of the CurrentClip.
@@ -50,11 +53,18 @@ namespace Microwave
         /// <param name="e"></param>
         private void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
-            if (!isOn) return;
-
             Dispatcher.InvokeAsync(() =>
             {
+                Console.Clear();
+                Debug.WriteLine(MediaElement.Position);
+
                 if (MediaElement.Position < CurrentClip.End) return;
+
+                if (CurrentClip == ClipTimings.Empty.Startup)
+                {
+                    Display = "00:00";
+                    isOn = true;
+                }
 
                 MediaElement.Position = NextClip.Start;
                 CurrentClip = NextClip;
@@ -66,13 +76,10 @@ namespace Microwave
             if (!isOn)
             {
                 MediaElement.Play();
-                CurrentItem.Idle(IsOpen);
+                empty.Startup();
 
                 FrameTimer.Start();
 
-                Display = "00:00";
-
-                isOn = true;
             }
             else if (!IsMicrowaving && Display != "00:00")
             {
@@ -144,7 +151,7 @@ namespace Microwave
                 isOn = false;
                 FrameTimer.Stop();
                 MicrowaveDisplay.Content = "";
-                MediaElement.Position = TimeSpan.Zero;
+                MediaElement.Position = new TimeSpan(0,0,0,0,150);
                 MediaElement.Pause();
             }
             else if (isOn && !IsMicrowaving && Display != "00:00")
