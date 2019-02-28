@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Microwave.controller;
 using Microwave.Interfaces;
 using Microwave.json;
 
@@ -40,7 +41,7 @@ namespace Microwave.Item
         {
             var result = rand.Next(100);
 
-            if (result > 0)
+            if (result > 80)
             {
                 Debug.WriteLine(result);
 
