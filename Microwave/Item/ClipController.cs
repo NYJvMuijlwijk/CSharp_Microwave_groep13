@@ -1,4 +1,5 @@
-﻿using System.Windows.Threading;
+﻿using System.Windows;
+using System.Windows.Threading;
 using Microwave.json;
 
 namespace Microwave.Item
@@ -14,9 +15,9 @@ namespace Microwave.Item
         /// <param name="nextClip">The clip to be played after initial clip finishes</param>
         protected static void ClipSetup(Clip currentClip, Clip nextClip)
         {
-            Dispatcher.CurrentDispatcher.InvokeAsync(() => {
-                MainWindow.Main.MediaElement.Position = currentClip.Start;
+            Application.Current.Dispatcher.Invoke(() => {
                 MainWindow.Main.CurrentClip = currentClip;
+                MainWindow.Main.MediaElement.Position = currentClip.Start;
                 MainWindow.Main.NextClip = nextClip;
             });
         }
