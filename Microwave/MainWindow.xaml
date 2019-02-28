@@ -39,7 +39,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0,0,2,0"/>
+            <Setter Property="Padding" Value="0,0,7,0"/>
         </Style>
     </Window.Resources>
 
