@@ -97,5 +97,14 @@ namespace Microwave.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream uwa {
+            get {
+                return ResourceManager.GetStream("uwa", resourceCulture);
+            }
+        }
     }
 }
