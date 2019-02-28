@@ -26,10 +26,12 @@ namespace Microwave
             DataContext = this;
             Display = "";
 
+            // initialize items
             empty = new EmptyItem();
             donut = new DonutItem();
             cup = new CupItem();
 
+            // initialize sound Media
             easterEgg = new MediaPlayer();
             microwaveBeep = new MediaPlayer();
             easterEgg.Open(new Uri(@"resources\music.wav", UriKind.RelativeOrAbsolute));
