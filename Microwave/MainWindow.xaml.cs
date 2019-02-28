@@ -217,7 +217,8 @@ namespace Microwave
             if (isOn) return;
 
             MediaElement.Play();
-            empty.Startup();
+            CurrentClip = ClipTimings.Empty.Startup;
+            NextClip = ClipTimings.Empty.IdleClosed;
 
             FrameTimer.Start();
         }
