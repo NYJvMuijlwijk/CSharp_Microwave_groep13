@@ -38,7 +38,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0,0,7,0"/>
+            <Setter Property="Padding" Value="0,0,2,0"/>
         </Style>
     </Window.Resources>
 
@@ -66,7 +66,7 @@
         </Grid.ColumnDefinitions>
 
         <!--microwave media-->
-        <MediaElement HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Source="resources/Off.png" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="8" UnloadedBehavior="Manual" Width="1280" Height="720"/>
+        <MediaElement LoadedBehavior="Manual" Source="resources/microwave.mp4" ScrubbingEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Name="MediaElement" Grid.ColumnSpan="9" Grid.RowSpan="8" UnloadedBehavior="Manual" Width="1280" Height="720"/>
         
         <!--button pad-->
         <Button Tag="1" Click="NrButton_OnClick" Name="Nr1Button" Grid.Column="2" Grid.Row="2"/>
