@@ -199,7 +199,6 @@ namespace Microwave
 
         #region Properties
 
-        public SoundPlayer MicrowaveRunning { get; } = new SoundPlayer(Properties.Resources.microwave_running_short);
         public SoundPlayer MicrowaveDone { get; } = new SoundPlayer(Properties.Resources.microwave_done);
 
         public Timings ClipTimings { get; } =
