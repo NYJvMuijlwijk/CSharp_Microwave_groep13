@@ -18,8 +18,6 @@ namespace Microwave
     /// </summary>
     public partial class MainWindow
     {
-        #region Methods
-
         public MainWindow()
         {
             InitializeComponent();
@@ -44,6 +42,8 @@ namespace Microwave
                 MediaElement.Pause();
             };
         }
+
+        #region Methods
 
         /// <summary>
         ///     checks if the current position of the MediaElement has passed the end of the CurrentClip.
@@ -135,6 +135,17 @@ namespace Microwave
             DisplayTimer.Add(number);
         }
 
+        private void StartUpButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (isOn) return;
+
+            MediaElement.Play();
+            CurrentClip = ClipTimings.Empty.Startup;
+            NextClip = ClipTimings.Empty.IdleClosed;
+
+            FrameTimer.Start();
+        }
+
         private void StopButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!isOn) return;
@@ -211,16 +222,5 @@ namespace Microwave
         }
 
         #endregion
-
-        private void StartUpButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (isOn) return;
-
-            MediaElement.Play();
-            CurrentClip = ClipTimings.Empty.Startup;
-            NextClip = ClipTimings.Empty.IdleClosed;
-
-            FrameTimer.Start();
-        }
     }
 }

@@ -72,7 +72,7 @@ namespace Microwave
         }
 
         /// <summary>
-        /// Updates the microwave display
+        ///     Updates the microwave display
         /// </summary>
         private static void UpdateTimer()
         {
