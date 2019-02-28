@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Microwave.controller;
 using Microwave.Interfaces;
 using Microwave.json;
@@ -46,11 +47,12 @@ namespace Microwave.Item
                     ClipSetup(ClipTimings.Donut.Done, ClipTimings.Donut.IdleClosed);
                     break;
                 case 1 :
-                    ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
-                    if (MainWindow.Main.getEasterEggPlaying())
+                    Application.Current.Dispatcher.Invoke(()=>
                     {
-                        MainWindow.Main.SetEasterEgg();
-                    }
+                        MainWindow.Main.EasterEgg.Pause();
+                        MainWindow.Main.EasterEggPlaying = false;
+                    });
+                    ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
                     break;
             }
         }
