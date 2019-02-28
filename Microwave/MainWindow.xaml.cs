@@ -4,6 +4,7 @@ using System.Media;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Microwave.Interfaces;
 using Microwave.Item;
 using Microwave.json;
@@ -28,6 +29,11 @@ namespace Microwave
             empty = new EmptyItem();
             donut = new DonutItem();
             cup = new CupItem();
+
+            easterEgg = new MediaPlayer();
+            microwaveBeep = new MediaPlayer();
+            easterEgg.Open(new Uri(@"resources\music.wav", UriKind.RelativeOrAbsolute));
+            microwaveBeep.Open(new Uri(@"resources\uwa.wav", UriKind.RelativeOrAbsolute));
 
             CurrentItem = empty;
 
@@ -186,6 +192,19 @@ namespace Microwave
             cup.Add();
             IsAnimating = true;
         }
+        private void EasterEggButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (easterEggPlaying)
+            {
+                easterEgg.Pause();
+            }
+            else
+            {
+                easterEgg.Play();
+            }
+
+            easterEggPlaying = !easterEggPlaying;
+        }
 
         #endregion
 
@@ -195,8 +214,11 @@ namespace Microwave
 
         private static readonly Timer FrameTimer = new Timer(1000 / 30f);
 
-        private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
-        private readonly SoundPlayer easterEgg = new SoundPlayer(Properties.Resources.music);
+        //private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
+        //private readonly SoundPlayer easterEgg = new SoundPlayer(Properties.Resources.music);
+
+        private readonly MediaPlayer microwaveBeep;
+        private readonly MediaPlayer easterEgg;
 
         public static MainWindow Main;
 
@@ -231,18 +253,6 @@ namespace Microwave
 
         #endregion
 
-        private void EasterEggButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (easterEggPlaying)
-            {
-                easterEgg.Stop();
-            }
-            else
-            {
-                easterEgg.PlayLooping();
-            }
-
-            easterEggPlaying = !easterEggPlaying;
-        }
+        
     }
 }
