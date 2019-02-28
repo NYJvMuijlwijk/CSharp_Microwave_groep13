@@ -201,8 +201,6 @@ namespace Microwave
 
         #region Properties
 
-        public SoundPlayer MicrowaveDone { get; } = new SoundPlayer(Properties.Resources.microwave_done);
-
         public Timings ClipTimings { get; } =
             JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
 

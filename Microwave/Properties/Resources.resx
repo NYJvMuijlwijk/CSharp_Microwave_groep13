@@ -124,15 +124,6 @@
   <data name="microwave_beep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\uwa.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="microwave_done" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\microwave-done.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="microwave_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\microwave-open.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="microwave_running_short" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\microwave-running-short.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Timings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\Timings.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
