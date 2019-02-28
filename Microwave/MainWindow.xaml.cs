@@ -72,17 +72,9 @@ namespace Microwave
 
         private void StartButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (IsOpen || CurrentClip == ClipTimings.Empty.Startup) return;
+            if (IsOpen || CurrentClip == ClipTimings.Empty.Startup || !isOn) return;
 
-            if (!isOn)
-            {
-                MediaElement.Play();
-                empty.Startup();
-
-                FrameTimer.Start();
-
-            }
-            else if (!IsMicrowaving && Display != "00:00")
+            if (!IsMicrowaving && Display != "00:00")
             {
                 CurrentItem.Idle(IsOpen);
                 DisplayTimer.Start();
@@ -219,5 +211,15 @@ namespace Microwave
         }
 
         #endregion
+
+        private void StartUpButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (isOn) return;
+
+            MediaElement.Play();
+            empty.Startup();
+
+            FrameTimer.Start();
+        }
     }
 }

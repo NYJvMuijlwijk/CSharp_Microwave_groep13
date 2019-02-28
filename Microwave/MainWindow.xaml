@@ -93,6 +93,9 @@
 
         <!--add cup-->
         <Button Name="CupButton" Click="CupButton_OnClick" Grid.Column="7" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
+        
+        <!--start-up button-->
+        <Button Name="StartUpButton" Click="StartUpButton_OnClick" Grid.Column="5" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="1"/>
 
         <!--exit button-->
         <Button Name="ExitButton" Click="ExitButton_OnClick" Content="Exit" Grid.Column="8" Grid.Row="0" Opacity="100" Height="60" VerticalAlignment="Top"/>
