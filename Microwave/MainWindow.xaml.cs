@@ -72,6 +72,8 @@ namespace Microwave
 
         private void StartButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (IsOpen || CurrentClip == ClipTimings.Empty.Startup) return;
+
             if (!isOn)
             {
                 MediaElement.Play();
