@@ -25,6 +25,9 @@ namespace Microwave
             DataContext = this;
             Display = "";
 
+            MediaElement.Source = new Uri("resources/microwave.mp4", UriKind.RelativeOrAbsolute);
+            MediaElement.Pause();
+
             empty = new EmptyItem();
             donut = new DonutItem();
             cup = new CupItem();
@@ -62,7 +65,6 @@ namespace Microwave
         {
             if (!isOn)
             {
-                MediaElement.Source = new Uri("resources/microwave.mp4", UriKind.RelativeOrAbsolute);
                 MediaElement.Play();
                 CurrentItem.Idle(IsOpen);
 
@@ -142,8 +144,8 @@ namespace Microwave
                 isOn = false;
                 FrameTimer.Stop();
                 MicrowaveDisplay.Content = "";
-                MediaElement.Source = new Uri("resources/Off.png", UriKind.RelativeOrAbsolute);
-                MediaElement.Play();
+                MediaElement.Position = TimeSpan.Zero;
+                MediaElement.Pause();
             }
             else if (isOn && !IsMicrowaving && Display != "00:00")
             {
