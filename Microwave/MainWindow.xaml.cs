@@ -196,16 +196,7 @@ namespace Microwave
         }
         private void EasterEggButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (easterEggPlaying)
-            {
-                easterEgg.Pause();
-            }
-            else
-            {
-                easterEgg.Play();
-            }
-
-            easterEggPlaying = !easterEggPlaying;
+            SetEasterEgg();
         }
 
         #endregion
@@ -229,6 +220,25 @@ namespace Microwave
         private readonly CupItem cup;
 
         private bool easterEggPlaying;
+
+        public bool getEasterEggPlaying()
+        {
+            return easterEggPlaying;
+        }
+
+        public void SetEasterEgg()
+        {
+            if (easterEggPlaying)
+            {
+                easterEgg.Pause();
+            }
+            else
+            {
+                easterEgg.Play();
+            }
+
+            easterEggPlaying = !easterEggPlaying;
+        }
 
         #endregion
 
