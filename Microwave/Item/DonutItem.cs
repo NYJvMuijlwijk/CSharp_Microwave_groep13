@@ -48,12 +48,10 @@ namespace Microwave.Item
                 ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
                 return;
             }
-            else
-            {
                 Debug.WriteLine(result);
 
                 ClipSetup(ClipTimings.Donut.Done, ClipTimings.Donut.IdleClosed);
-            }
+            
 
             
         }
