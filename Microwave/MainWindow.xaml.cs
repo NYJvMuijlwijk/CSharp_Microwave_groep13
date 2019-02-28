@@ -22,7 +22,6 @@ using Microwave.Annotations;
 using Microwave.Item;
 using Newtonsoft.Json;
 using static System.Int32;
-using Path = System.IO.Path;
 
 namespace Microwave
 {
@@ -31,6 +30,9 @@ namespace Microwave
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        #region Attributes
+
         private bool isOn;
 
         private static readonly Timer frameTimer = new Timer(1000/30);
@@ -42,6 +44,8 @@ namespace Microwave
         readonly EmptyItem empty;
         readonly DonutItem donut;
         readonly CupItem cup;
+
+        #endregion
 
         #region Properties
 
@@ -58,16 +62,11 @@ namespace Microwave
         public bool IsOpen { get; private set; }
         public bool IsMicrowaving { get; set; }
 
+
         public string Display
         {
             get => MicrowaveDisplay.Content.ToString();
             set { Dispatcher.Invoke(() => { MicrowaveDisplay.Content = value; }); }
-        }
-
-        public MediaElement MicrowaveMediaElement
-        {
-            get => MediaElement;
-            set { Dispatcher.Invoke(() => { MediaElement = value; }); }
         }
 
         #endregion
