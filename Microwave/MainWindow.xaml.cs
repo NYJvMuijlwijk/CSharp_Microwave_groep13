@@ -100,7 +100,6 @@ namespace Microwave
 
             CurrentItem.Close();
             IsAnimating = true;
-
         }
 
         private void Open_RemoveButton_OnClick(object sender, RoutedEventArgs e)
