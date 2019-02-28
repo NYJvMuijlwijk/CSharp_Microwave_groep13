@@ -55,9 +55,11 @@ namespace Microwave
         {
             Dispatcher.InvokeAsync(() =>
             {
+                if (CurrentClip == ClipTimings.Donut.Radioactive) Display = "";
+
                 if (MediaElement.Position < CurrentClip.End) return;
 
-                if (CurrentClip == ClipTimings.Empty.Startup)
+                if (CurrentClip == ClipTimings.Empty.Startup || CurrentClip == ClipTimings.Donut.Radioactive)
                 {
                     Display = "00:00";
                     isOn = true;
@@ -205,7 +207,7 @@ namespace Microwave
         public Timings ClipTimings { get; } =
             JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
 
-        public Clip CurrentClip { private get; set; }
+        public Clip CurrentClip { get; set; }
         public Clip NextClip { private get; set; }
 
         public IItem CurrentItem { get; private set; }
