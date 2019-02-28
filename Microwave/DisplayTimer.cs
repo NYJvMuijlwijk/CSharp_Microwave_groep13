@@ -16,13 +16,14 @@ namespace Microwave
         /// <param name="time">Number to add</param>
         public static void Add(int time)
         {
-            if (int.Parse(_counter + time) >= 10000)
+            if (int.Parse(_counter + time) >= 9000)
             {
-                _counter = "9999";
-                return;
+                _counter = "9000";
             }
-
-            _counter += time;
+            else
+            {
+                _counter += time;
+            }
 
             UpdateTimer();
         }
