@@ -92,6 +92,12 @@ namespace Microwave
             MediaElement.Play();
         }
 
+        /// <summary>
+        /// checks if the current position of the MediaElement has passed the end of the CurrentClip.
+        /// if so, it sets the Position to the start of the NextClip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
             if (!isOn) return;
