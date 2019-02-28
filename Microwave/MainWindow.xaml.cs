@@ -1,77 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Media;
-using System.Runtime.CompilerServices;
 using System.Timers;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microwave.Annotations;
+using System.Windows;
+using System.Windows.Controls;
+using Microwave.Interfaces;
 using Microwave.Item;
+using Microwave.json;
 using Newtonsoft.Json;
 using static System.Int32;
-using Path = System.IO.Path;
 
 namespace Microwave
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private bool isOn;
-
-        private static readonly Timer frameTimer = new Timer(1000/30);
-
-        private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
-
-        public static MainWindow Main;
-
-        readonly EmptyItem empty;
-        readonly DonutItem donut;
-        readonly CupItem cup;
-
-        #region Properties
-
-        public SoundPlayer MicrowaveRunning { get; } = new SoundPlayer(Properties.Resources.microwave_running_short);
-        public SoundPlayer MicrowaveDone { get; } = new SoundPlayer(Properties.Resources.microwave_done);
-
-        public Timings ClipTimings { get; } = JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
-
-        public Clip CurrentClip { get; set; }
-        public Clip NextClip { get; set; }
-
-        public IItem CurrentItem { get; set; }
-
-        public bool IsOpen { get; private set; }
-        public bool IsMicrowaving { get; set; }
-
-        public string Display
-        {
-            get => MicrowaveDisplay.Content.ToString();
-            set { Dispatcher.Invoke(() => { MicrowaveDisplay.Content = value; }); }
-        }
-
-        public MediaElement MicrowaveMediaElement
-        {
-            get => MediaElement;
-            set { Dispatcher.Invoke(() => { MediaElement = value; }); }
-        }
-
-        #endregion
-
         public MainWindow()
         {
             InitializeComponent();
@@ -86,20 +32,26 @@ namespace Microwave
 
             CurrentItem = empty;
 
-            frameTimer.Elapsed += TimerOnElapsed;
+            FrameTimer.Elapsed += TimerOnElapsed;
 
             MediaElement.LoadedBehavior = MediaState.Manual;
             MediaElement.Play();
         }
 
+        /// <summary>
+        ///     checks if the current position of the MediaElement has passed the end of the CurrentClip.
+        ///     if so, it sets the Position to the start of the NextClip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimerOnElapsed(object sender, ElapsedEventArgs e)
         {
             if (!isOn) return;
-            
-            Dispatcher.InvokeAsync(()=>
+
+            Dispatcher.InvokeAsync(() =>
             {
                 if (MediaElement.Position < CurrentClip.End) return;
-                Debug.WriteLine("Clip End" );
+                Debug.WriteLine("Clip End");
                 MediaElement.Position = NextClip.Start;
                 CurrentClip = NextClip;
             });
@@ -113,8 +65,8 @@ namespace Microwave
                 MediaElement.Play();
                 CurrentItem.Idle(IsOpen);
 
-                frameTimer.Start();
-                
+                FrameTimer.Start();
+
                 Display = "00:00";
 
                 isOn = true;
@@ -160,7 +112,7 @@ namespace Microwave
                 IsOpen = true;
 
                 DisplayTimer.Stop();
-                
+
                 CurrentItem.Open();
             }
         }
@@ -176,7 +128,7 @@ namespace Microwave
 
             microwaveBeep.Play();
 
-            var number = Parse(((Button)sender).Tag.ToString());
+            var number = Parse(((Button) sender).Tag.ToString());
             DisplayTimer.Add(number);
         }
 
@@ -187,7 +139,7 @@ namespace Microwave
             if (isOn && !IsMicrowaving && Display == "00:00")
             {
                 isOn = false;
-                frameTimer.Stop();
+                FrameTimer.Stop();
                 MicrowaveDisplay.Content = "";
                 MediaElement.Source = new Uri("resources/Off.png", UriKind.RelativeOrAbsolute);
                 MediaElement.Play();
@@ -223,5 +175,45 @@ namespace Microwave
 
             cup.Add();
         }
+
+        #region Attributes
+
+        private bool isOn;
+
+        private static readonly Timer FrameTimer = new Timer(1000 / 30f);
+
+        private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
+
+        public static MainWindow Main;
+
+        private readonly EmptyItem empty;
+        private readonly DonutItem donut;
+        private readonly CupItem cup;
+
+        #endregion
+
+        #region Properties
+
+        public SoundPlayer MicrowaveRunning { get; } = new SoundPlayer(Properties.Resources.microwave_running_short);
+        public SoundPlayer MicrowaveDone { get; } = new SoundPlayer(Properties.Resources.microwave_done);
+
+        public Timings ClipTimings { get; } =
+            JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
+
+        public Clip CurrentClip { private get; set; }
+        public Clip NextClip { private get; set; }
+
+        public IItem CurrentItem { get; private set; }
+
+        private bool IsOpen { get; set; }
+        public bool IsMicrowaving { private get; set; }
+
+        public string Display
+        {
+            private get => MicrowaveDisplay.Content.ToString();
+            set { Dispatcher.Invoke(() => { MicrowaveDisplay.Content = value; }); }
+        }
+
+        #endregion
     }
 }

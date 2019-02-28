@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Windows.Threading;
+﻿using System.Windows.Threading;
+using Microwave.json;
 
 namespace Microwave.Item
 {
@@ -12,7 +12,7 @@ namespace Microwave.Item
         /// </summary>
         /// <param name="currentClip">The clip to be played</param>
         /// <param name="nextClip">The clip to be played after initial clip finishes</param>
-        protected void ClipSetup(Clip currentClip, Clip nextClip)
+        protected static void ClipSetup(Clip currentClip, Clip nextClip)
         {
             Dispatcher.CurrentDispatcher.InvokeAsync(() => {
                 MainWindow.Main.MediaElement.Position = currentClip.Start;

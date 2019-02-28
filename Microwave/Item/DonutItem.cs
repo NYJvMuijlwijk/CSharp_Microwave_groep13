@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microwave.Interfaces;
+using Microwave.json;
 
 namespace Microwave.Item
 {
-    class DonutItem : ClipController, IItem
+    internal class DonutItem : ClipController, IItem
     {
         private readonly Timings ClipTimings;
-        private Random rand = new Random();
+        private readonly Random rand = new Random();
 
 
         public DonutItem()
