@@ -117,11 +117,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\Off.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="resources\microwave-beep.wav" />
     <None Include="resources\microwave-on-loop.wav" />
   </ItemGroup>
