@@ -25,7 +25,6 @@ namespace Microwave
             DataContext = this;
             Display = "";
 
-
             empty = new EmptyItem();
             donut = new DonutItem();
             cup = new CupItem();
@@ -64,6 +63,8 @@ namespace Microwave
                     isOn = true;
                 }
 
+                IsAnimating = false;
+
                 MediaElement.Position = NextClip.Start;
                 CurrentClip = NextClip;
             });
@@ -71,7 +72,7 @@ namespace Microwave
 
         private void StartButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (IsOpen || CurrentClip == ClipTimings.Empty.Startup || !isOn) return;
+            if (IsOpen || CurrentClip == ClipTimings.Empty.Startup || !isOn || IsAnimating) return;
 
             if (!IsMicrowaving && Display != "00:00")
             {
@@ -88,25 +89,28 @@ namespace Microwave
                 DisplayTimer.AddMinute();
             }
 
-            //microwaveBeep.Play();
+            microwaveBeep.Play();
         }
 
         private void CloseDoorButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!isOn || !IsOpen) return;
+            if (!isOn || !IsOpen || IsAnimating) return;
 
             IsOpen = false;
 
             CurrentItem.Close();
+            IsAnimating = true;
+
         }
 
         private void Open_RemoveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!isOn) return;
+            if (!isOn || IsAnimating) return;
 
             if (IsOpen)
             {
                 CurrentItem.Remove();
+                IsAnimating = true;
                 CurrentItem = empty;
             }
             else
@@ -116,6 +120,7 @@ namespace Microwave
                 DisplayTimer.Stop();
 
                 CurrentItem.Open();
+                IsAnimating = true;
             }
         }
 
@@ -147,7 +152,7 @@ namespace Microwave
 
         private void StopButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!isOn) return;
+            if (!isOn || IsAnimating) return;
 
             if (isOn && !IsMicrowaving && Display != "00:00")
             {
@@ -160,25 +165,27 @@ namespace Microwave
                 DisplayTimer.Stop();
             }
 
-            //microwaveBeep.Play();
+            microwaveBeep.Play();
         }
 
         private void DonutButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!isOn || !IsOpen || CurrentItem != empty) return;
+            if (!isOn || !IsOpen || CurrentItem != empty || IsAnimating) return;
 
             CurrentItem = donut;
 
             donut.Add();
+            IsAnimating = true;
         }
 
         private void CupButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!isOn || !IsOpen || CurrentItem != empty) return;
+            if (!isOn || !IsOpen || CurrentItem != empty || IsAnimating) return;
 
             CurrentItem = cup;
 
             cup.Add();
+            IsAnimating = true;
         }
 
         #endregion
@@ -204,6 +211,7 @@ namespace Microwave
         public Timings ClipTimings { get; } =
             JsonConvert.DeserializeObject<Timings>(File.ReadAllText(@"resources/Timings.json"));
 
+
         public Clip CurrentClip { get; set; }
         public Clip NextClip { private get; set; }
 
@@ -211,6 +219,7 @@ namespace Microwave
 
         private bool IsOpen { get; set; }
         public bool IsMicrowaving { private get; set; }
+        private bool IsAnimating { get; set; }
 
         public string Display
         {
