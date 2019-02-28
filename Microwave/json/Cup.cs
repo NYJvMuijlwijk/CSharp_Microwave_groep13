@@ -1,6 +1,6 @@
 ﻿namespace Microwave.json
 {
-    public abstract class Cup
+    public class Cup
     {
         public Clip IdleOpen { get; set; }
         public Clip IdleClosed { get; set; }
