@@ -109,6 +109,7 @@
     <Content Include="resources\microwave.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="resources\music.wav" />
     <Content Include="resources\Timings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

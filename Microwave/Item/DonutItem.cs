@@ -38,15 +38,17 @@ namespace Microwave.Item
 
         public void Done()
         {
-            var result = rand.Next(100);
+            var result = rand.Next(100) > 80 ? 1 : 0;
 
-            if (result > 80)
+            switch (result)
             {
-                ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
-                return;
+                case 0 :
+                    ClipSetup(ClipTimings.Donut.Done, ClipTimings.Donut.IdleClosed);
+                    break;
+                case 1 :
+                    ClipSetup(ClipTimings.Donut.Radioactive, ClipTimings.Donut.IdleClosed);
+                    break;
             }
-
-            ClipSetup(ClipTimings.Donut.Done, ClipTimings.Donut.IdleClosed);
         }
 
         public void Add()

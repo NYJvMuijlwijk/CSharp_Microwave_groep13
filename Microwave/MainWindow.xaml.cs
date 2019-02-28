@@ -196,12 +196,15 @@ namespace Microwave
         private static readonly Timer FrameTimer = new Timer(1000 / 30f);
 
         private readonly SoundPlayer microwaveBeep = new SoundPlayer(Properties.Resources.microwave_beep);
+        private readonly SoundPlayer easterEgg = new SoundPlayer(Properties.Resources.music);
 
         public static MainWindow Main;
 
         private readonly EmptyItem empty;
         private readonly DonutItem donut;
         private readonly CupItem cup;
+
+        private bool easterEggPlaying;
 
         #endregion
 
@@ -227,5 +230,19 @@ namespace Microwave
         }
 
         #endregion
+
+        private void EasterEggButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (easterEggPlaying)
+            {
+                easterEgg.Stop();
+            }
+            else
+            {
+                easterEgg.PlayLooping();
+            }
+
+            easterEggPlaying = !easterEggPlaying;
+        }
     }
 }
